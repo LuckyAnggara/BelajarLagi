@@ -1,3 +1,4 @@
+
 <!doctype html>
 <html lang="en">
   <head>
@@ -66,29 +67,43 @@
           <th scope="col">Nama Agen</th>
           <th scope="col">Kecamatan</th>
           <th scope="col">Desa</th>
-          <th scope="col">Status EDC</th>
-          <th scope="col">Status BPNT</th>
         </tr>
       </thead>
       <tbody>
-        <tr>
-          <th scope="row">1</th>
-          <td>Mark</td>
-          <td>Otto</td>
-          <td>@mdo</td>
+
+      <!-- Mulai SCRIPT PHP -->
+      <?php
+      include 'config.php';
+      $no = 1;
+      $data = mysqli_query($koneksi,"select*from agen");
+
+      // cek jika koneksi error karena apa
+      if (!$data) {
+      printf("Error: %s\n", mysqli_error($koneksi));
+      exit();
+      }
+
+
+      while($d = mysqli_fetch_array($data)){
+      ?>
+      <tr>
+          <th><?php echo $no++; ?></th>
+
+          
+         
+          <td><a href="#"><?php echo $d['kodeagen']; ?></a></td>
+          
+          
+          <td><?php echo $d['namaagen']; ?></td>
+
+          <td><?php echo $d['kecamatan'];?></td>
+          <td><?php echo $d['desa'];?></td>
         </tr>
-        <tr>
-          <th scope="row">2</th>
-          <td>Jacob</td>
-          <td>Thornton</td>
-          <td>@fat</td>
-        </tr>
-        <tr>
-          <th scope="row">3</th>
-          <td>Larry</td>
-          <td>the Bird</td>
-          <td>@twitter</td>
-        </tr>
+
+      <?php
+      // SCRIPT PHP UDAHAN 
+        }
+       ?>
       </tbody>
     </table>
     <!-- Akhir Tabel Data Agen -->
