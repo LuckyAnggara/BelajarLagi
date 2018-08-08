@@ -127,7 +127,8 @@
       <a href="#"> <?php echo $countbpnt[0];?> </a>Agen
       </p>
       <p>
-      Jumlah Agen yang Memiliki EDC Sejumlah <?php echo $countedc[0];?> Agen
+      Jumlah Agen yang Memiliki EDC Sejumlah 
+      <a href="#"> <?php echo $countedc[0];?> </a>Agen
       </p>
 
 
