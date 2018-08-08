@@ -5,9 +5,8 @@
     <!-- Required meta tags -->
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-
-    <!-- Bootstrap CSS -->
-    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css" integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO" crossorigin="anonymous">
+    <link rel="stylesheet" type="text/css" href="css\bootstrap.min.css">
+    <link rel="stylesheet" type="text/css" href="css\stylelucky.css">
 
     <title>Belajar Bootstratp
     </title>
@@ -66,8 +65,9 @@
 
 
 
-    <div class="container-fluid text-center">
+    <div class="container-fluid text-center" >
       <h3>Data Agen BNI KC Garut</h3>
+      </hr>
       <h5>Total <?php echo $count[0];?> Agen</h5>
     </br>
 
@@ -76,8 +76,11 @@
 
 
     <!-- Tabel Data Agen   -->
-
-    <table class="table table-striped">
+  
+  <div class="container-fluid">
+  <div class="row">    
+    <div class="col-8">    
+    <table class="table table-striped table-responsive">
       <thead>
         <tr>
           <th scope="col">No</th>
@@ -86,42 +89,60 @@
         </tr>
       </thead>
       <tbody>
-
       <!-- Mulai SCRIPT PHP -->
     <?php
      while($d = mysqli_fetch_array($data)){
     ?>
       <tr>
           <th><?php echo $no++; ?></th>
-
-          
-         
           <td>
           <!-- narik data kode agen untuk di jadikan ID dengan method GET -->
             <a href="detailagen.php?id=<?php echo $d['kode_agen']; ?>"><?php echo $d['kode_agen']; ?></a>
-
           </td>
-          
-          
           <td><?php echo $d['nama_agen']; ?></td>
-
         </tr>
-
       <?php
       // SCRIPT PHP UDAHAN 
         }
        ?>
       </tbody>
     </table>
+  </div>
+
+      <div class="col">
+      <?php
+      $databpnt = mysqli_query($koneksi,"select count(bpnt) from agen where bpnt='1'");
+      $dataedc = mysqli_query($koneksi,"select count(edc) from agen where edc='1'");
+      $countbpnt = mysqli_fetch_row($databpnt);
+      $countedc = mysqli_fetch_row($dataedc);
+      
+      // cek jika koneksi error karena apa
+      if (!$databpnt) {
+      printf("Error: %s\n", mysqli_error($koneksi));
+      exit();
+      }
+      ?>
+      <p>
+      Jumlah Agen yang Aktif BPNT Sejumlah 
+      <a href="#"> <?php echo $countbpnt[0];?> </a>Agen
+      </p>
+      <p>
+      Jumlah Agen yang Memiliki EDC Sejumlah <?php echo $countedc[0];?> Agen
+      </p>
+
+
+
+
+      </div>
+  </div>
     <!-- Akhir Tabel Data Agen -->
-
-
-    <!-- Optional JavaScript -->
-
-    
+    <!-- Optional JavaScript -->    
     <!-- jQuery first, then Popper.js, then Bootstrap JS -->
     <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.3/umd/popper.min.js" integrity="sha384-ZMP7rVo3mIykV+2+9J3UJ46jBk0WLaUAdn689aCwoqbBJiSnjAK/l8WvCWPIPm49" crossorigin="anonymous"></script>
     <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/js/bootstrap.min.js" integrity="sha384-ChfqqxuZUCnJSK3+MXmPNIyE6ZbWh2IMqE241rYiqJxyMiZ6OW/JmZQ5stwEULTy" crossorigin="anonymous"></script>
   </body>
+ <footer>
+   Copyright Lucky Anggara 2018
+ </footer>
 </html>

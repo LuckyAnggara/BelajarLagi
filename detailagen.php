@@ -3,7 +3,8 @@
 <head>
 
  <!-- Bootstrap CSS -->
-    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css" integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO" crossorigin="anonymous">
+    <link rel="stylesheet" href="css\bootstrap.min.css">
+    <link rel="stylesheet" type="text/css" href="css\stylelucky.css">
 
 	<title>Detail Agen PHP</title>
 </head>
@@ -93,16 +94,20 @@
     </div>
   </div>
   <!-- Tabel RT RW -->
+  <!-- PAKE FITUR DELIMITER UNTUK MEMISAHKAN RT/RW -->
    <div class="form-group row offset-sm-2">
     <label for="NamaAgen" class="col-sm-2 col-form-label">RT</label>
     <div class="col-sm-2">
-      <input type="text" class="form-control" id="RtRw" value="<?php echo $d['rt_rw'];?>" readonly="">
+      <input type="text" class="form-control" id="RtRw" value="<?php $rtrw = explode ("/",$d['rt_rw'],2); echo $rtrw[0]?>" readonly="">
     </div>
     <label for="NamaAgen" class="col-sm-2 col-form-label">RW</label>
     <div class="col-sm-2">
-      <input type="text" class="form-control" id="RtRw" value="<?php echo $d['rt_rw'];?>" readonly="">
+      <input type="text" class="form-control" id="RtRw" value="<?php echo $rtrw[1];?>" readonly="">
     </div>
   </div>
+  <!-- AKHIR FITUR DELIMITER UNTUK MEMISAHKAN RT/RW -->
+
+
   <!-- Tabel PROVINSI -->
    <div class="form-group row offset-sm-2">
     <label for="NamaAgen" class="col-sm-2 col-form-label">KABUPATEN</label>
@@ -145,16 +150,66 @@
       <input type="text" class="form-control" id="Email" value="<?php echo $d['email'];?>" readonly="">
     </div>
   </div>
+<!-- EDC -->
+   <div class="form-group row offset-sm-2">
+    <label for="EDC" class="col-sm-2 col-form-label">EDC</label>
+    <div class="col-sm-6">
+      <input type="text" class="form-control" id="EDC" value="<?php 
+     	if ($d['edc']) {
+  		$edc = "SUDAH ADA EDC";
+  		echo $edc;
+		}
+		else {
+    	$edc = "BELUM ADA EDC";
+    	echo $edc;
+		}
+		?>" 
+		readonly="">
+    </div>
+  </div>
+<!-- BPNT -->
+   <div class="form-group row offset-sm-2">
+    <label for="BPNT" class="col-sm-2 col-form-label">BPNT</label>
+    <div class="col-sm-6">
+      <input type="text" class="form-control" id="BPNT" value="<?php 
+     	if ($d['edc']) {
+  		$edc = "SUDAH AKTIF BPNT";
+  		echo $edc;
+		}
+		else {
+    	$edc = "BELUM AKTIF BPNT";
+    	echo $edc;
+		}
+		?>" 
+		readonly="">
+    </div>
+  </div>
+<!-- MOU -->
+   <div class="form-group row offset-sm-2">
+    <label for="MOU" class="col-sm-2 col-form-label">MOU</label>
+    <div class="col-sm-6">
+      <input type="text" class="form-control" id="MOU" value="<?php 
+     	if ($d['edc']) {
+  		$edc = "SUDAH ADA MOU";
+  		echo $edc;
+		}
+		else {
+    	$edc = "BELUM ADA MOU";
+    	echo $edc;
+		}
+		?>" 
+		readonly="">
+    </div>
+  </div>
+
 </form>
+<div class="container text-center">
+<a href="index.php" class="btn btn-primary btn-lg active" role="button" aria-pressed="true">KEMBALI</a>
+</div>
+
+
+
 <!-- Akhir Detail FORM! -->
-
-
-
-
-
-
-
-
 	<?php
 	}
 	?>
