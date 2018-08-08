@@ -123,7 +123,7 @@
       }
       ?>
       <p>
-      Jumlah Agen yang Aktif BPNT Sejumlah 
+      Jumlah Agen yang Aktif BPNT Sejumlah SSSS 
       <a href="#"> <?php echo $countbpnt[0];?> </a>Agen
       </p>
       <p>
