@@ -49,8 +49,26 @@
       </div>
     </nav>
     <!-- AKHIR DARI NAV BAR -->
-    <div class="container text-center">
+
+    <?php
+      include 'config.php';
+      $no = 1;
+      $data = mysqli_query($koneksi,"select*from agen");
+      $datacount = mysqli_query($koneksi,"select count(nama_agen) from agen");
+      $count = mysqli_fetch_row($datacount);
+      // cek jika koneksi error karena apa
+      if (!$data) {
+      printf("Error: %s\n", mysqli_error($koneksi));
+      exit();
+      }
+  
+      ?>
+
+
+
+    <div class="container-fluid text-center">
       <h3>Data Agen BNI KC Garut</h3>
+      <h5>Total <?php echo $count[0];?> Agen</h5>
     </br>
 
     </div>
@@ -65,39 +83,28 @@
           <th scope="col">No</th>
           <th scope="col">Kode Agen</th>
           <th scope="col">Nama Agen</th>
-          <th scope="col">Kecamatan</th>
-          <th scope="col">Desa</th>
         </tr>
       </thead>
       <tbody>
 
       <!-- Mulai SCRIPT PHP -->
-      <?php
-      include 'config.php';
-      $no = 1;
-      $data = mysqli_query($koneksi,"select*from agen");
-
-      // cek jika koneksi error karena apa
-      if (!$data) {
-      printf("Error: %s\n", mysqli_error($koneksi));
-      exit();
-      }
-
-
-      while($d = mysqli_fetch_array($data)){
-      ?>
+    <?php
+     while($d = mysqli_fetch_array($data)){
+    ?>
       <tr>
           <th><?php echo $no++; ?></th>
 
           
          
-          <td><a href="#"><?php echo $d['kodeagen']; ?></a></td>
-          
-          
-          <td><?php echo $d['namaagen']; ?></td>
+          <td>
+          <!-- narik data kode agen untuk di jadikan ID dengan method GET -->
+            <a href="detailagen.php?id=<?php echo $d['kode_agen']; ?>"><?php echo $d['kode_agen']; ?></a>
 
-          <td><?php echo $d['kecamatan'];?></td>
-          <td><?php echo $d['desa'];?></td>
+          </td>
+          
+          
+          <td><?php echo $d['nama_agen']; ?></td>
+
         </tr>
 
       <?php
