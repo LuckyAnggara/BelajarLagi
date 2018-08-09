@@ -48,8 +48,9 @@
 
 
 <!-- header nama lengkap -->
-    <div class="container-fluid text-center">
-    <?php
+<div class="container text-center">
+
+  <?php
 	include 'config.php';
 	$id=$_GET['id'];
 	$data = mysqli_query($koneksi,"select * from agen where kode_agen='$id'");
@@ -65,6 +66,8 @@
     </div>
     <!-- DETAIL FORM -->
     <!-- Tabel Kode Agen -->
+  <div class="row">
+    <div class="col-sm-8">
 <form>
   <div class="form-group row offset-sm-2">
     <label for="KodeAgen" class="col-sm-2 col-form-label">Kode Agen</label>
@@ -206,8 +209,56 @@
 <div class="container text-center">
 <a href="index.php" class="btn btn-primary btn-lg active" role="button" aria-pressed="true">KEMBALI</a>
 </div>
+</div>
+
+<div class="col-sm-4">
+  <div class="container">
+    <h3>UPDATE DATA AGEN</h3>
+  </br>
+  <form method="post" action="upload.php?id=<?php echo $d['kode_agen'];?>" enctype="multipart/form-data">
+  <div class="form-group">
+    <label for="kelayakan">STATUS KELAYAKAN AGEN</label>
+    <select class="form-control" name="kelayakan" value="<?php echo $d['kelayakan'];?>">
+      <option>BELUM DIKUNJUNGI</option>
+      <option>LAYAK</option>
+      <option>TIDAK LAYAK</option>
+    </select>
+  </div>
+  
+
+  </br>
+  
+  <label for="kelayakan">FOTO LOKASI USAHA</label>
+  </br>
+  <img src = "img\<?php echo $d['foto']?>" alt="FOTO TIDAK ADA" width="360px" height="240px">
 
 
+  <div class = "card">
+  </hr>
+  </br>
+  </br>
+  </br>
+  </br>
+  <label for="kelayakan">UPLOAD FOTO</label>
+  </br>
+  </br>
+  <input type="file"name="foto">
+  </div>
+
+
+  </br>
+  </br>
+  
+
+  <div class="form-group">
+    <input type="submit" class="btn btn-success" name="foto" rows="3" value="UPDATE"></textarea>
+  </div>
+
+</form>
+</div>
+
+</div>
+</div>
 
 <!-- Akhir Detail FORM! -->
 	<?php
