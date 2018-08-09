@@ -150,7 +150,7 @@
    <div class="form-group row offset-sm-2">
     <label for="NamaAgen" class="col-sm-2 col-form-label">EMAIL</label>
     <div class="col-sm-6">
-      <input type="text" class="form-control" id="Email" value="<?php echo $d['email'];?>" readonly="">
+      <input type="text" class="form-control" id="Email" value="<?php echo $d['kelayakan'];?>" readonly="">
     </div>
   </div>
 <!-- EDC -->
@@ -158,7 +158,7 @@
     <label for="EDC" class="col-sm-2 col-form-label">EDC</label>
     <div class="col-sm-6">
       <input type="text" class="form-control" id="EDC" value="<?php 
-     	if ($d['edc']) {
+     if ($d['edc']) {
   		$edc = "SUDAH ADA EDC";
   		echo $edc;
 		}
@@ -218,19 +218,44 @@
   <form method="post" action="upload.php?id=<?php echo $d['kode_agen'];?>" enctype="multipart/form-data">
   <div class="form-group">
     <label for="kelayakan">STATUS KELAYAKAN AGEN</label>
-    <select class="form-control" name="kelayakan" value="<?php echo $d['kelayakan'];?>">
-      <option>BELUM DIKUNJUNGI</option>
-      <option>LAYAK</option>
-      <option>TIDAK LAYAK</option>
+    <select class="form-control" name="kelayakan" >
+      <?php
+      if ($d['kelayakan']== "BELUM DIKUNJUNGI") {
+        ?>
+      <option value="BELUM DIKUNJUNGI" selected>BELUM DIKUNJUNGI</option>
+      <option value="LAYAK">LAYAK</option>
+      <option value="TIDAK LAYAK">TIDAK LAYAK</option>
+      <?php
+      }
+      ?>
+      <?php
+      if ($d['kelayakan']== "LAYAK"){
+        ?>
+      <option value="BELUM DIKUNJUNGI" >BELUM DIKUNJUNGI</option>
+      <option value="LAYAK" selected>LAYAK</option>
+      <option value="TIDAK LAYAK">TIDAK LAYAK</option>
+      <?php
+      }
+      ?>
+      <?php
+      if ($d['kelayakan']== "TIDAK LAYAK"){
+        ?>
+      <option value="BELUM DIKUNJUNGI" >BELUM DIKUNJUNGI</option>
+      <option value="LAYAK">LAYAK</option>
+      <option value="TIDAK LAYAK" selected>TIDAK LAYAK</option>
+      <?php
+      }
+      ?>
     </select>
   </div>
   
 
   </br>
   
-  <label for="kelayakan">FOTO LOKASI USAHA</label>
+  <label for="kelayakan">Foto Lokasi Usaha</label>
   </br>
-  <img src = "img\<?php echo $d['foto']?>" alt="FOTO TIDAK ADA" width="360px" height="240px">
+  <div class = "card">
+  <img src = "img\<?php echo $d['foto']?>" alt=" ----FOTO LOKASI BELUM ADA---- " width="360px" height="240px">
 
 
   <div class = "card">

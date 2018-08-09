@@ -1,8 +1,8 @@
 <?php
 $local = "localhost";
-$user	= "lucky";
+$user	= "id6719785_lucky";
 $pass	= "111333";
-$db		= "bansos";
+$db		= "id6719785_bansos";
 
 $koneksi = mysqli_connect($local,$user,$pass,$db);
 if (mysqli_connect_errno()){
